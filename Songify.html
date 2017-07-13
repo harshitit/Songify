@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Songify</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<style type="text/css">
+		body{
+			background: rgba(255,0,0,0.3);
+			padding: 0;
+			margin: 0;
+		}
+		header{
+			font-family:"Forte";
+			color: rgba(255,255,0,0.4);
+			font-size: 25px;
+		}
+		.title{
+			position: initial-block;
+			padding: 1px 0px;
+			background:rgba(255,0,0,0.3); 
+		}
+		footer{
+			position: fixed;
+			margin-top: 335px;
+			width: 100%;
+			padding: 10px 0px;
+			border-top: 1px solid; 
+			background: rgba(255,0,0,0.3);
+			border-color: rgba(255,0,0,0.6);
+			text-align: center;
+		}
+		.play-bar{
+			text-align: center;
+			display: inline;
+		}
+		.h1{
+			border: 2px solid blue;
+			width: 60%;
+			margin-left: 20%;
+			margin-top:2%; 
+		}
+		.play-box{
+			font-size: 40px;
+			border: 2px solid black;
+			border-color: rgba(255,0,0,0.6);
+			display: inline-block;
+			padding: 10px;
+			border-radius: 50%;
+			width: 4%;
+		}
+		.play{
+			color: rgba(255,0,0,0.6);
+		}
+		.current-time{
+			display: inline-block;
+			padding: 0px 10px 0px 0px;
+			text-align: center;
+		}
+		.duration{
+			display: inline-block;
+			padding: 0px 0px 0px 10px;
+			text-align: center;	
+		}
+	</style>
+</head>
+<body>
+	<audio src="audio.mp3"></audio>
+	<header>
+		<div class="title">
+			<h1>Songify</h1>
+		</div>
+	</header>
+	<div class="song-details">
+		<table>
+			<thead>
+				<tr>
+					<td>Title</td>
+					<td>Artist</td>
+					<td>Album</td>
+					<td>Duration</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr id='song1'>
+					<td class="song-name"></td>
+					<td class="song-artist"></td>
+					<td class="song-album"></td>
+					<td class="song-duration"></td>
+				</tr>
+				<tr id='song2'>
+					<td class="song-name"></td>
+					<td class="song-artist"></td>
+					<td class="song-album"></td>
+					<td class="song-duration"></td>
+				</tr>
+				<tr id='song3'>
+					<td class="song-name"></td>
+					<td class="song-artist"></td>
+					<td class="song-album"></td>
+					<td class="song-duration"></td>
+				</tr>
+				<tr id='song4'>
+					<td class="song-name"></td>
+					<td class="song-artist"></td>
+					<td class="song-album"></td>
+					<td class="song-duration"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<footer>
+		<div class="play-bar">
+			<p class="current-time"></p>
+			<div class="play-box">
+				<i class="fa fa-play play"></i>
+			</div>
+			<p class="duration"></p>
+		</div>
+	</footer>
+	<script src="jquery.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+	<script>
+		var songs = [
+		{
+	        'name': 'Meri Bheegi Bheegi Si',
+	        'artist': 'Kishore Kumar',
+	        'album': 'Kishore Kumar In Mood',
+	        'duration': '4:04',
+	        'fileName': 'song.mp3',
+	        'image': 'image.jpg'
+	    },
+	    {
+	        'name': 'Ikk Kudi',
+	        'artist': 'Shahid Mallya',
+	        'album': 'Udta Punjab',
+	        'duration': '4:03',
+	        'fileName': 'song1.mp3',
+	        'image': 'image1.jpg'
+	    },
+	    {
+	        'name': 'Te Amo (Reprise)',
+	        'artist': 'Mohit Chauhan',
+	        'album': 'Dum Maaro Dum',
+	        'duration': '4:56',
+	        'fileName': 'song2.mp3',
+	        'image': 'image2.jpg'
+	    },
+	    {
+	        'name': 'Photograph',
+	        'artist': 'Ed Sheeran',
+	        'album': 'x',
+	        'duration': '4:18',
+	        'fileName': 'song3.mp3',
+	        'image': 'image3.jpg'
+	    }
+	    ]
+	    window.onload = function (){
+
+		changeCurrentSongDetails(songs[0]);
+
+	 	for(var i = 0; i < songs.length; i++) {
+	        var obj = songs[i];
+	        var name = '#song' + (i+1);
+	        var song = $(name);
+	        song.find('.song-name').text(obj.name);
+	        song.find('.song-artist').text(obj.artist);
+	        song.find('.song-album').text(obj.album);
+	        song.find('.song-length').text(obj.duration);
+	        addSongNameClickEvent(obj, i + 1);
+    	}
+    	$('#songs').DataTable({
+    		paging: false,
+    	});
+
+	}
+		function fancyTimeFormat(time)
+		{   
+    		var hrs = ~~(time / 3600);
+    		var mins = ~~((time % 3600) / 60);
+    		var secs = time % 60;
+			var ret = "";
+    		if (hrs > 0) {
+        	ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
+    		}
+    		ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+    		ret += "" + secs;
+    		return ret;
+		}
+		function playButton(){
+			var song = $('audio');
+       		if (song[0].paused == true) {
+           		song[0].play();
+           		$('.play').removeClass('fa-play').addClass('fa-pause');
+       		} 
+       		else {
+           		song[0].pause();
+           		$('.play').removeClass('fa-pause').addClass('fa-play');
+        	}
+		}
+		$('body').on('keypress',function(event){
+			if (event.keyCode==32) {
+				playButton();
+		}
+		});
+		$('.play').on('click',function(){
+				playButton();
+		});
+		setInterval(function(){
+			var song=$('audio');
+			$('.current-time').text(fancyTimeFormat(Math.floor(song[0].currentTime)));
+		},100);
+		setInterval(function(){
+			var song=$('audio');
+			$('.duration').text(fancyTimeFormat(Math.floor(song[0].duration)));
+		},100);
+		window.onload= function(){
+			$("#one").text(songList[0]);
+			$("#two").text(songList[1]);
+		}
+		var songList=['song1','song2']
+
+	function toggleSong() {
+		var song = document.querySelector('audio'); 
+		if(song.paused) {
+			song.play();	
+		} else {
+			song.pause();
+		}
+	}
+	
+	function addSongNameClickEvent(songObj, id) {
+			var songName = songObj.name;
+			var fileName = songObj.fileName
+			var id = '#song' + id;
+			$(id).on('click', function(event){
+				var song = document.querySelector('audio');
+				var currentSong = song.src;
+				if (currentSong.search(fileName) != -1) {
+					toggleSong();
+				} else {
+					changeCurrentSongDetails(songObj);
+					song.src = fileName; 
+					song.play();	
+				}
+			});
+		}
+	function changeCurrentSongDetails(songObj) {
+		var songPath = 'img/' + songObj.image;
+	    $('.current-song-image').attr('src', songPath)
+	    $('.current-song-name').text(songObj.name)
+	    $('.current-song-album').text(songObj.album)
+	}
+	</script>
+</body>
+</html>
