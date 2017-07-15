@@ -1,12 +1,38 @@
 body{
-	background: rgba(0,0,255,0.3);
+	background: rgba(0,0,0,0.8);
 	padding: 0;
 	margin: 0;
 }
 header{
+	display: inline-block;
+	width: 100%;
 	font-family:"Forte";
-	color: rgba(0,255,0,0.9);
-	font-size: 20px;
+	color: rgba(255,140,0,0.9);
+	border-bottom: 2px solid orange;
+	background:rgba(0,0,0,0.4);
+	text-align: right;
+}
+.title input{
+	background-color: rgba(0,0,0,0.3);
+	color: rgba(255,165,0,0.7); 
+}
+.title h1{
+	display: inline;
+	position: relative;
+	margin-right: 70%;
+	top: 20px;
+	font-size: 50px;
+}
+.song-search{
+	vertical-align: bottom;
+	padding: 0px;
+}
+.user-name{
+	display: inline-block;
+	vertical-align: top;
+	padding: 0px 5px;
+	font-size: 18px;
+	font-family: "Arial";
 }
 img {
 	width: 100px;
@@ -14,28 +40,29 @@ img {
     padding: 0.5%;
     border-radius: 10px;
 }
-td{
-	padding: 2px 10px;
+table td{
+	padding: 2px 20px;
 }
 table thead{
-	color: rgba(0,0,255,1);
+	color: rgba(255,140,0,0.9);
 	font-size: 22px;
 }
 table tbody{
-	color: rgba(0,0,0,0.7);
+	color: rgba(255,165,0,1);
 	font-size: 18px;
 }
-.current-song-wrapper div {
+.current-song-details div {
 	display: inline-block;
 	vertical-align: top;
 	margin-left: 5px;
 }
-.current-song-wrapper{  
+.current-song-details{
+	color: rgba(255,165,0,0.9);  
 	vertical-align: top;
-	border-right: 2px blue solid; 
+	border-right: 2px orange solid; 
 	display: inline-block;
 	width: 30%;
-	padding:10px 0px 345px 0px;
+	padding:10px 0px 330px 0px;
 }
 .current-song-name {
 	font-size: 22px;
@@ -44,22 +71,16 @@ table tbody{
 .current-song-album {
 	margin: 5px 0;
 }
-.title{
-	position: initial-block;
-	padding: 1px 0px;
-	background:rgba(0,0,255,0.3); 
-}
 .song-details{
 	display: inline-block;
-	padding: 10px 30px
+	padding: 10px 20px;
 }
 footer{
 	display: inline-block;
 	width: 100%;
 	padding: 10px 0px;
-	border-top: 1px solid; 
-	background: rgba(0,0,255,0.3);
-	border-color: rgba(0,0,255,0.6);
+	border-top: 2px solid orange;
+	background: rgba(0,0,0,0.4);
 	text-align: center;
 }
 .play-bar{
@@ -67,33 +88,39 @@ footer{
 	display: inline;
 }
 .h1{
-	border: 2px solid blue;
+	border: 2px solid orange;
 	width: 60%;
 	margin-left: 20%;
 	margin-top:2%; 
 }
 .play-box{
 	font-size: 40px;
-	border: 2px solid black;
-	border-color: rgba(0,0,255,0.6);
+	border: 2px solid orange;
 	display: inline-block;
 	padding: 10px;
 	border-radius: 50%;
 	width: 4%;
 }
 .play{
-	color: rgba(0,0,255,0.6);
+	color: rgba(255,140,0,0.6);
 }
 .current-time{
 	display: inline-block;
 	padding: 0px 10px 0px 0px;
 	text-align: center;
+	color: rgba(255,140,0,0.9);
 }
 .duration{
 	display: inline-block;
 	padding: 0px 0px 0px 10px;
-	text-align: center;	
+	text-align: center;
+	color: rgba(255,140,0,0.9);
 }
-.current-song-wrapper{
-	display: inline-block;
+.welcome-screen{
+	margin-top: 250px;
+	text-align: center;
+	color: rgba(255,165,0,0.9);
+}
+.welcome-screen button{
+	color: rgba(255,165,0,1);
 }
