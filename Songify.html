@@ -2,124 +2,133 @@
 <html>
 <head>
 	<title>Songify</title>
+	<script src="artyom.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<style type="text/css">
-		body{
-			background: rgba(255,0,0,0.3);
-			padding: 0;
-			margin: 0;
-		}
-		header{
-			font-family:"Forte";
-			color: rgba(255,255,0,0.4);
-			font-size: 25px;
-		}
-		.title{
-			position: initial-block;
-			padding: 1px 0px;
-			background:rgba(255,0,0,0.3); 
-		}
-		footer{
-			position: fixed;
-			margin-top: 335px;
-			width: 100%;
-			padding: 10px 0px;
-			border-top: 1px solid; 
-			background: rgba(255,0,0,0.3);
-			border-color: rgba(255,0,0,0.6);
-			text-align: center;
-		}
-		.play-bar{
-			text-align: center;
-			display: inline;
-		}
-		.h1{
-			border: 2px solid blue;
-			width: 60%;
-			margin-left: 20%;
-			margin-top:2%; 
-		}
-		.play-box{
-			font-size: 40px;
-			border: 2px solid black;
-			border-color: rgba(255,0,0,0.6);
-			display: inline-block;
-			padding: 10px;
-			border-radius: 50%;
-			width: 4%;
-		}
-		.play{
-			color: rgba(255,0,0,0.6);
-		}
-		.current-time{
-			display: inline-block;
-			padding: 0px 10px 0px 0px;
-			text-align: center;
-		}
-		.duration{
-			display: inline-block;
-			padding: 0px 0px 0px 10px;
-			text-align: center;	
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 </head>
 <body>
-	<audio src="audio.mp3"></audio>
-	<header>
-		<div class="title">
-			<h1>Songify</h1>
-		</div>
-	</header>
-	<div class="song-details">
-		<table>
-			<thead>
-				<tr>
-					<td>Title</td>
-					<td>Artist</td>
-					<td>Album</td>
-					<td>Duration</td>
-				</tr>
-			</thead>
-			<tbody>
-				<tr id='song1'>
-					<td class="song-name"></td>
-					<td class="song-artist"></td>
-					<td class="song-album"></td>
-					<td class="song-duration"></td>
-				</tr>
-				<tr id='song2'>
-					<td class="song-name"></td>
-					<td class="song-artist"></td>
-					<td class="song-album"></td>
-					<td class="song-duration"></td>
-				</tr>
-				<tr id='song3'>
-					<td class="song-name"></td>
-					<td class="song-artist"></td>
-					<td class="song-album"></td>
-					<td class="song-duration"></td>
-				</tr>
-				<tr id='song4'>
-					<td class="song-name"></td>
-					<td class="song-artist"></td>
-					<td class="song-album"></td>
-					<td class="song-duration"></td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<footer>
-		<div class="play-bar">
-			<p class="current-time"></p>
-			<div class="play-box">
-				<i class="fa fa-play play"></i>
+	<div class="welcome-screen">
+        <h1> Welcome to Songify </h1>
+        <h3> Enter Your Name</h3>
+        <div>
+        	<input type="text" placeholder="Name" id="name-input">
+    	    <button> Roll In </button>
+        </div>
+    </div>
+    <div class="music-player">
+		<header>
+			<div class="title">
+				<h1>Songify</h1>
+				<p class="user-name"></p>
+				<p class="song-search">Search: <input type="search" placeholder="song name" id="search-box"></p>
 			</div>
-			<p class="duration"></p>
+		</header>
+		<div class="current-song-details">
+	    	<img class="current-song-image">
+	    	<div>
+	       		<p class="current-song-name"></p>
+	       		<p class="current-song-album"></p>
+	   		</div>
 		</div>
-	</footer>
-	<script src="jquery.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+		<div class="song-details">
+			<table>
+				<thead>
+					<tr>
+						<td>Title</td>
+						<td>Artist</td>
+						<td>Album</td>
+						<td>Duration</td>
+					</tr>
+				</thead>
+				<tbody>
+					<tr id='song1'>
+						<td class="song-name"></td>
+						<td class="song-artist"></td>
+						<td class="song-album"></td>
+						<td class="song-duration"></td>
+					</tr>
+					<tr id='song2'>
+						<td class="song-name"></td>
+						<td class="song-artist"></td>
+						<td class="song-album"></td>
+						<td class="song-duration"></td>
+					</tr>
+					<tr id='song3'>
+						<td class="song-name"></td>
+						<td class="song-artist"></td>
+						<td class="song-album"></td>
+						<td class="song-duration"></td>
+					</tr>
+					<tr id='song4'>
+						<td class="song-name"></td>
+						<td class="song-artist"></td>
+						<td class="song-album"></td>
+						<td class="song-duration"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<footer>
+			<div class="play-bar">
+				<p class="current-time"></p>
+				<div class="play-box">
+					<i class="fa fa-play play"></i>
+				</div>
+				<p class="duration"></p>
+			</div>
+			<audio></audio>
+		</footer>
+	</div>
+	<script src="artyom.min.js"></script>
+	<script src="jquery-2.2.0.js"></script>
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 	<script>
+		function voice(){
+			artyom.addCommands([
+	{
+		description:"say hello",
+		indexes:["play"],
+		action:function(i){
+			var song = document.querySelector('audio');
+			if (i==0) {
+					song.play();
+					$('.play').removeClass('fa-play').addClass('fa-pause');
+			}
+		}
+	},
+	{
+		indexes:["pause"],
+		action:function(){
+			var song = document.querySelector('audio');
+			song.pause();
+			$('.play').removeClass('fa-pause').addClass('fa-play');
+		}
+	}
+	])};
+	function startArtyom(){
+         artyom.initialize({
+            lang:"en-GB",// A lot of languages are supported. Read the docs !
+            continuous:true,// recognize 1 command and stop listening !
+            listen:true, // Start recognizing
+            debug:true, // Show everything in the console
+            });
+     }
+		$(".music-player").hide();
+		$(".duration").hide();
+		$('button').on('click', function() {
+        var name = $('#name-input').val();
+        if (name.length > 3) {
+            var message = "Welcome, " + name;
+            $('.user-name').text(message);
+            $('.welcome-screen').hide();
+            $('.music-player').toggle();
+            startArtyom();
+
+        } else {
+            alert("Enter your name more than 3 words");
+        }
+    });
 		var songs = [
 		{
 	        'name': 'Meri Bheegi Bheegi Si',
@@ -155,7 +164,6 @@
 	    }
 	    ]
 	    window.onload = function (){
-
 		changeCurrentSongDetails(songs[0]);
 
 	 	for(var i = 0; i < songs.length; i++) {
@@ -165,14 +173,13 @@
 	        song.find('.song-name').text(obj.name);
 	        song.find('.song-artist').text(obj.artist);
 	        song.find('.song-album').text(obj.album);
-	        song.find('.song-length').text(obj.duration);
+	        song.find('.song-duration').text(obj.duration);
 	        addSongNameClickEvent(obj, i + 1);
     	}
     	$('#songs').DataTable({
     		paging: false,
-    	});
-
-	}
+    	})
+		}
 		function fancyTimeFormat(time)
 		{   
     		var hrs = ~~(time / 3600);
@@ -186,24 +193,23 @@
     		ret += "" + secs;
     		return ret;
 		}
-		function playButton(){
-			var song = $('audio');
-       		if (song[0].paused == true) {
-           		song[0].play();
-           		$('.play').removeClass('fa-play').addClass('fa-pause');
-       		} 
-       		else {
-           		song[0].pause();
-           		$('.play').removeClass('fa-pause').addClass('fa-play');
-        	}
+		function toggleSong() {
+		var song = document.querySelector('audio'); 
+		if(song.paused) {
+			song.play();
+			$('.play').removeClass('fa-play').addClass('fa-pause');	
+		} else {
+			song.pause();
+			$('.play').removeClass('fa-pause').addClass('fa-play');
+		}
 		}
 		$('body').on('keypress',function(event){
 			if (event.keyCode==32) {
-				playButton();
+				toggleSong();
 		}
 		});
 		$('.play').on('click',function(){
-				playButton();
+				toggleSong();
 		});
 		setInterval(function(){
 			var song=$('audio');
@@ -213,39 +219,27 @@
 			var song=$('audio');
 			$('.duration').text(fancyTimeFormat(Math.floor(song[0].duration)));
 		},100);
-		window.onload= function(){
-			$("#one").text(songList[0]);
-			$("#two").text(songList[1]);
-		}
-		var songList=['song1','song2']
-
-	function toggleSong() {
-		var song = document.querySelector('audio'); 
-		if(song.paused) {
-			song.play();	
-		} else {
-			song.pause();
-		}
-	}
-	
-	function addSongNameClickEvent(songObj, id) {
+		function addSongNameClickEvent(songObj, id) {
 			var songName = songObj.name;
-			var fileName = songObj.fileName
+			var fileName = songObj.fileName;
 			var id = '#song' + id;
 			$(id).on('click', function(event){
 				var song = document.querySelector('audio');
 				var currentSong = song.src;
+				$(".duration").show();
 				if (currentSong.search(fileName) != -1) {
 					toggleSong();
 				} else {
 					changeCurrentSongDetails(songObj);
-					song.src = fileName; 
-					song.play();	
+					song.src = fileName;
+					song.play();
+					voice();
+					$('.play').removeClass('fa-play').addClass('fa-pause');	
 				}
 			});
 		}
 	function changeCurrentSongDetails(songObj) {
-		var songPath = 'img/' + songObj.image;
+		var songPath = songObj.image;
 	    $('.current-song-image').attr('src', songPath)
 	    $('.current-song-name').text(songObj.name)
 	    $('.current-song-album').text(songObj.album)
