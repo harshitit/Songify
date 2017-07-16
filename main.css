@@ -124,3 +124,16 @@ footer{
 .welcome-screen button{
 	color: rgba(255,165,0,1);
 }
+#name-input{
+	border: 2px solid red;
+	color: rgba(255,165,0,0.9);
+	background-color: rgba(0,0,0,0.6);
+}
+#error-message{
+	color: rgba(255,0,0,1);
+}
+#input-fields{
+	display: inline-block;
+	text-align: left;
+	line-height:0;
+}
