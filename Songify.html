@@ -4,16 +4,17 @@
 	<title>Songify</title>
 	<script src="artyom.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="style.css">
+	<link rel="stylesheet" type="text/css" href="main.css">
 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
 </head>
 <body>
 	<div class="welcome-screen">
         <h1> Welcome to Songify </h1>
         <h3> Enter Your Name</h3>
-        <div>
+        <div id="input-fields">
         	<input type="text" placeholder="Name" id="name-input">
     	    <button> Roll In </button>
+    	    <p id="error-message">more than 3 words</p>
         </div>
     </div>
     <div class="music-player">
@@ -32,7 +33,7 @@
 	   		</div>
 		</div>
 		<div class="song-details">
-			<table>
+			<table id="songs">
 				<thead>
 					<tr>
 						<td>Title</td>
@@ -80,7 +81,6 @@
 			<audio></audio>
 		</footer>
 	</div>
-	<script src="artyom.min.js"></script>
 	<script src="jquery-2.2.0.js"></script>
 	<script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
 	<script>
@@ -98,7 +98,7 @@
 		}
 	},
 	{
-		indexes:["pause"],
+		indexes:["pause","stop"],
 		action:function(){
 			var song = document.querySelector('audio');
 			song.pause();
@@ -176,10 +176,31 @@
 	        song.find('.song-duration').text(obj.duration);
 	        addSongNameClickEvent(obj, i + 1);
     	}
-    	$('#songs').DataTable({
-    		paging: false,
-    	})
 		}
+		$(document).ready(function(){
+			$("#search-box").keyup(function(){
+				searchSong($(this).val());
+			});
+			function searchSong(value){
+				$("#songs tbody tr").each(function(){
+					var found="false";
+					$(this).each(function(){
+						if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0) 
+						{
+							found="true";
+						}
+					});
+					if (found == "true") 
+					{
+						$(this).show();
+					}
+					else
+					{
+						$(this).hide();
+					}
+				});
+			}
+		});
 		function fancyTimeFormat(time)
 		{   
     		var hrs = ~~(time / 3600);
