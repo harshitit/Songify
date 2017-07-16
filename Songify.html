@@ -2,12 +2,13 @@
 <html>
 <head>
 	<title>Songify</title>
-	<script src="artyom.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="main.css">
-	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css">
+	<script src="artyom.min.js"></script> <!-- to add voice cootrols -->
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- to add play/pause icons -->
+	<link rel="stylesheet" type="text/css" href="main.css"> 
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.15/css/jquery.dataTables.min.css"> <!-- dataTable to add search option -->
 </head>
 <body>
+	<!-- welcome screen which take user name-->
 	<div class="welcome-screen">
         <h1> Welcome to Songify </h1>
         <h3> Enter Your Name</h3>
@@ -17,6 +18,7 @@
     	    <p id="error-message">more than 3 words</p>
         </div>
     </div>
+    <!--Music player-->
     <div class="music-player">
 		<header>
 			<div class="title">
@@ -32,6 +34,7 @@
 	       		<p class="current-song-album"></p>
 	   		</div>
 		</div>
+		<!-- list of songs with  their details -->
 		<div class="song-details">
 			<table id="songs">
 				<thead>
@@ -81,13 +84,15 @@
 			<audio></audio>
 		</footer>
 	</div>
-	<script src="jquery-2.2.0.js"></script>
-	<script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+	<script src="jquery-2.2.0.js"></script><!-- used to add jquery library -->
+	<script type="text/javascript" src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script><!-- used to add dataTable library-->
 	<script>
+
+	/*this function takes voice as input like play to start the music and pause/stop to stop the music*/
 		function voice(){
 			artyom.addCommands([
 	{
-		description:"say hello",
+		description:"say play",
 		indexes:["play"],
 		action:function(i){
 			var song = document.querySelector('audio');
@@ -106,16 +111,19 @@
 		}
 	}
 	])};
+
+	/*this function used to set the language and other feature of voice*/
 	function startArtyom(){
          artyom.initialize({
-            lang:"en-GB",// A lot of languages are supported. Read the docs !
-            continuous:true,// recognize 1 command and stop listening !
+            lang:"en-GB",// A lot of languages are supported.
+            continuous:true,
             listen:true, // Start recognizing
             debug:true, // Show everything in the console
             });
      }
 		$(".music-player").hide();
 		$(".duration").hide();
+		/*when we click on Roll In button then our music app display on the screen */
 		$('button').on('click', function() {
         var name = $('#name-input').val();
         if (name.length > 3) {
@@ -129,6 +137,8 @@
             alert("Enter your name more than 3 words");
         }
     });
+
+		/*object of songs with there details*/
 		var songs = [
 		{
 	        'name': 'Meri Bheegi Bheegi Si',
@@ -163,9 +173,10 @@
 	        'image': 'image3.jpg'
 	    }
 	    ]
+
+	    /*when file is load then this function automatically take key from the object called songs and display a list of songs*/
 	    window.onload = function (){
 		changeCurrentSongDetails(songs[0]);
-
 	 	for(var i = 0; i < songs.length; i++) {
 	        var obj = songs[i];
 	        var name = '#song' + (i+1);
@@ -177,6 +188,8 @@
 	        addSongNameClickEvent(obj, i + 1);
     	}
 		}
+
+		/*function search the song from the list*/
 		$(document).ready(function(){
 			$("#search-box").keyup(function(){
 				searchSong($(this).val());
@@ -201,6 +214,8 @@
 				});
 			}
 		});
+
+		/*function to convert time from seconds to minutes*/
 		function fancyTimeFormat(time)
 		{   
     		var hrs = ~~(time / 3600);
@@ -214,6 +229,8 @@
     		ret += "" + secs;
     		return ret;
 		}
+
+		/*function used to toggle the current playing song.*/
 		function toggleSong() {
 		var song = document.querySelector('audio'); 
 		if(song.paused) {
@@ -224,22 +241,32 @@
 			$('.play').removeClass('fa-pause').addClass('fa-play');
 		}
 		}
+
+		/*toggle the song on the press space bar*/
 		$('body').on('keypress',function(event){
 			if (event.keyCode==32) {
 				toggleSong();
 		}
 		});
+
+		/*toggle the play/pause icon*/
 		$('.play').on('click',function(){
 				toggleSong();
 		});
+
+		/*gives current time of the song*/
 		setInterval(function(){
 			var song=$('audio');
 			$('.current-time').text(fancyTimeFormat(Math.floor(song[0].currentTime)));
 		},100);
+
+		/*gives total duration of the song*/
 		setInterval(function(){
 			var song=$('audio');
 			$('.duration').text(fancyTimeFormat(Math.floor(song[0].duration)));
 		},100);
+
+		/*select and play/pause the song*/
 		function addSongNameClickEvent(songObj, id) {
 			var songName = songObj.name;
 			var fileName = songObj.fileName;
@@ -259,6 +286,8 @@
 				}
 			});
 		}
+
+		/*give current playing song details*/
 	function changeCurrentSongDetails(songObj) {
 		var songPath = songObj.image;
 	    $('.current-song-image').attr('src', songPath)
