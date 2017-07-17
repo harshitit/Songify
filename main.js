@@ -56,32 +56,32 @@
 	        'artist': 'Kishore Kumar',
 	        'album': 'Kishore Kumar In Mood',
 	        'duration': '4:04',
-	        'fileName': 'song.mp3',
-	        'image': 'image.jpg'
+	        'fileName': 'songs/song.mp3',
+	        'image': 'Images/image.jpg'
 	    },
 	    {
 	        'name': 'Ikk Kudi',
 	        'artist': 'Shahid Mallya',
 	        'album': 'Udta Punjab',
 	        'duration': '4:03',
-	        'fileName': 'song1.mp3',
-	        'image': 'image1.jpg'
+	        'fileName': 'songs/song1.mp3',
+	        'image': 'Images/image1.jpg'
 	    },
 	    {
 	        'name': 'Te Amo (Reprise)',
 	        'artist': 'Mohit Chauhan',
 	        'album': 'Dum Maaro Dum',
 	        'duration': '4:56',
-	        'fileName': 'song2.mp3',
-	        'image': 'image2.jpg'
+	        'fileName': 'songs/song2.mp3',
+	        'image': 'Images/image2.jpg'
 	    },
 	    {
 	        'name': 'Photograph',
 	        'artist': 'Ed Sheeran',
 	        'album': 'x',
 	        'duration': '4:18',
-	        'fileName': 'song3.mp3',
-	        'image': 'image3.jpg'
+	        'fileName': 'songs/song3.mp3',
+	        'image': 'Images/image3.jpg'
 	    }
 	    ]
 
