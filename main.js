@@ -156,7 +156,8 @@
 
 		/*toggle the song on the press space bar*/
 		$('body').on('keypress',function(event){
-			if (event.keyCode==32) {
+			var target = event.target;
+			if (event.keyCode==32 && target.tagName != 'INPUT') {
 				toggleSong();
 		}
 		});
