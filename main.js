@@ -38,6 +38,7 @@
         var name = $('#name-input').val();
         if (name.length > 3) {
             var message = "Welcome, " + name;
+            artyom.say("Hello"+name+"Welcome to songify");
             $('.user-name').text(message);
             $('.welcome-screen').hide();
             $('.music-player').toggle();
@@ -55,37 +56,38 @@
 	        'artist': 'Kishore Kumar',
 	        'album': 'Kishore Kumar In Mood',
 	        'duration': '4:04',
-	        'fileName': 'songs/song.mp3',
-	        'image': 'Images/image.jpg'
+	        'fileName': 'song.mp3',
+	        'image': 'image.jpg'
 	    },
 	    {
 	        'name': 'Ikk Kudi',
 	        'artist': 'Shahid Mallya',
 	        'album': 'Udta Punjab',
 	        'duration': '4:03',
-	        'fileName': 'songs/song1.mp3',
-	        'image': 'Images/image1.jpg'
+	        'fileName': 'song1.mp3',
+	        'image': 'image1.jpg'
 	    },
 	    {
 	        'name': 'Te Amo (Reprise)',
 	        'artist': 'Mohit Chauhan',
 	        'album': 'Dum Maaro Dum',
 	        'duration': '4:56',
-	        'fileName': 'songs/song2.mp3',
-	        'image': 'Images/image2.jpg'
+	        'fileName': 'song2.mp3',
+	        'image': 'image2.jpg'
 	    },
 	    {
 	        'name': 'Photograph',
 	        'artist': 'Ed Sheeran',
 	        'album': 'x',
 	        'duration': '4:18',
-	        'fileName': 'songs/song3.mp3',
-	        'image': 'Images/image3.jpg'
+	        'fileName': 'song3.mp3',
+	        'image': 'image3.jpg'
 	    }
 	    ]
 
 	    /*when file is load then this function automatically take key from the object called songs and display a list of songs*/
 	    window.onload = function (){
+
 		changeCurrentSongDetails(songs[0]);
 	 	for(var i = 0; i < songs.length; i++) {
 	        var obj = songs[i];
